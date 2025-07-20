@@ -1,6 +1,32 @@
 <?= $this->extend('dashboard/layout') ?>
 <?= $this->section('content') ?>
 
+<?php if (session()->getFlashdata('success')): ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses!',
+            text: '<?= session()->getFlashdata('success') ?>',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    </script>
+<?php endif; ?>
+
+<?php if (session()->getFlashdata('error')): ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: '<?= session()->getFlashdata('error') ?>',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    </script>
+<?php endif; ?>
+
 <h2>Data Lapangan</h2>
 
 <?php if (session()->getFlashdata('success')): ?>
@@ -40,5 +66,22 @@
     </tr>
   <?php endforeach; ?>
 </table>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Yakin ingin menghapus data ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '<?= base_url('/dashboard/lapangan/hapus') ?>/' + id;
+            }
+        });
+    }
+</script>
 
 <?= $this->endSection() ?>
