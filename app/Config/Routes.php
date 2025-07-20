@@ -16,3 +16,7 @@ $routes->get('/dashboard/pelanggan', 'Dashboard::pelanggan');
 $routes->get('/dashboard/booking/add', 'Dashboard::bookingAdd');
 $routes->get('/dashboard/booking/list', 'Dashboard::bookingList');
 $routes->get('/dashboard/booking/update', 'Dashboard::bookingUpdate');
+
+$routes->get('/dashboard/lapangan', 'Dashboard::lapangan');
+$routes->post('/dashboard/lapangan/tambah', 'Dashboard::tambahLapangan');
+$routes->get('/dashboard/lapangan/hapus/(:num)', 'Dashboard::hapusLapangan/$1');
