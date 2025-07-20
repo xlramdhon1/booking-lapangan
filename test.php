@@ -1,1 +1,1 @@
-<?= esc($p['nama']) ?>
+dd($data); // sebelum insert

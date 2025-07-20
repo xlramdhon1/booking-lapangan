@@ -14,7 +14,7 @@
         <li><a href="<?= base_url('/dashboard/pelanggan') ?>">Data Pelanggan</a></li>
         <li><a href="<?= base_url('/dashboard/booking/tambah') ?>">Tambah Booking</a></li>
         <li><a href="<?= base_url('/dashboard/booking') ?>">Lihat Booking</a></li>
-        <li><a href="<?= base_url('/dashboard/booking/update') ?>">Update Status</a></li>
+        <li><a href="<?= base_url('/dashboard/booking/status') ?>">Status Booking</a></li>
         <li><a href="<?= base_url('/auth/logout') ?>">Logout</a></li>
       </ul>
     </div>

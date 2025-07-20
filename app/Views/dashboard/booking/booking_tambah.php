@@ -31,12 +31,12 @@
   $minDateTime = date('Y-m-d\TH:i'); 
   ?>
 
-<label for="tanggal">Tanggal Booking:</label><br>
-<input type="date" name="tanggal" id="tanggal" required min="<?= date('Y-m-d') ?>">
+<label for="tanggal_booking">Tanggal Booking</label>
+<input type="date" name="tanggal_booking" id="tanggal_booking" required>
 <br><br>
 
-<label for="jam">Jam Mulai:</label><br>
-<input type="time" name="jam" id="jam" required>
+<label for="jam_mulai">Jam Mulai</label>
+<input type="time" name="jam_mulai" id="jam_mulai" required>
 <br><br>
   
 <label for="durasi">Durasi (jam):</label><br>

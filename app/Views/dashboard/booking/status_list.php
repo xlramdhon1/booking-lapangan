@@ -1,7 +1,8 @@
 <?= $this->extend('dashboard/layout') ?>
 <?= $this->section('content') ?>
 
-<h2>Daftar Booking</h2>
+<h2>Kelola Status Booking</h2>
+<!-- Tabel booking, kolom status, tombol "Ubah Status" di tiap baris -->
 
 <?php if(session()->getFlashdata('success')): ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

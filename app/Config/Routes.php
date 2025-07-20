@@ -31,7 +31,12 @@ $routes->get('/dashboard/booking', 'Dashboard::booking');
 $routes->get('/dashboard/booking/tambah', 'Dashboard::bookingTambah');
 $routes->post('/dashboard/booking/simpan', 'Dashboard::bookingSimpan');
 $routes->get('/dashboard/booking/list', 'Dashboard::booking');
-$routes->get('/dashboard/booking/update', 'Dashboard::bookingUpdate');
+$routes->get('/dashboard/booking/update/(:num)', 'Dashboard::bookingUpdate/$1');
+$routes->get('/dashboard/booking/edit/(:num)', 'Dashboard::bookingEdit/$1');
+$routes->post('/dashboard/booking/update/(:num)', 'Dashboard::bookingUpdate/$1');
+$routes->get('/dashboard/booking/hapus/(:num)', 'Dashboard::hapusBooking/$1');
 
-
-
+$routes->get('/dashboard/booking/status', 'Dashboard::bookingStatusList');
+$routes->get('/dashboard/booking/status', 'Dashboard::bookingStatusPage');
+$routes->get('/dashboard/booking/status/(:num)', 'Dashboard::bookingStatusForm/$1');
+$routes->post('/dashboard/booking/status/update/(:num)', 'Dashboard::bookingStatusUpdate/$1');
