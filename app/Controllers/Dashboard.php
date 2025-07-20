@@ -3,9 +3,21 @@
 namespace App\Controllers;
 use App\Models\LapanganModel;
 use App\Models\PelangganModel;
+use App\Models\BookingModel;
 
 class Dashboard extends BaseController
 {
+    protected $lapanganModel;
+    protected $pelangganModel;
+    protected $bookingModel;
+
+    public function __construct()
+    {
+        $this->lapanganModel = new LapanganModel();
+        $this->pelangganModel = new PelangganModel();
+        $this->bookingModel = new BookingModel();
+    }
+
     public function index()
     {
         if (!session()->get('isLoggedIn')) {
@@ -128,6 +140,44 @@ class Dashboard extends BaseController
     return redirect()->to('/dashboard/pelanggan')->with('success', 'Data pelanggan berhasil diperbarui!');
     }
 
+// Tampilkan daftar booking
+    public function booking()
+    {
+    // ambil data booking dengan join pelanggan dan lapangan
+    $data['bookings'] = $this->bookingModel
+        ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
+        ->join('lapangan', 'lapangan.id = booking.lapangan_id')
+        ->select('booking.*, pelanggan.nama as pelanggan_nama, lapangan.nama as lapangan_nama')
+        ->findAll();
+
+    return view('dashboard/booking/index', $data);
+    }
+
+// Form tambah booking
+    public function bookingTambah()
+    {
+    $data['pelanggan'] = $this->pelangganModel->findAll();
+    $data['lapangan'] = $this->lapanganModel->findAll();
+
+    return view('dashboard/booking/booking_tambah', $data);
+    }
+
+// Proses simpan booking
+    public function bookingSimpan()
+    {
+    $data = [
+        'pelanggan_id' => $this->request->getPost('pelanggan_id'),
+        'lapangan_id' => $this->request->getPost('lapangan_id'),
+        'tanggal_booking' => $this->request->getPost('tanggal_booking'),
+        'durasi' => $this->request->getPost('durasi'),
+        'status' => 'pending',
+        'total_bayar' => $this->request->getPost('total_bayar'),
+    ];
+
+    $this->bookingModel->insert($data);
+
+    return redirect()->to('/dashboard/booking')->with('success', 'Booking berhasil ditambahkan!');
+    }
 
 
 }

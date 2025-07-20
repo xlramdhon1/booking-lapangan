@@ -30,4 +30,8 @@ $routes->get('/dashboard/pelanggan/hapus/(:num)', 'Dashboard::hapusPelanggan/$1'
 $routes->get('/dashboard/pelanggan/edit/(:num)', 'Dashboard::editPelanggan/$1');
 $routes->post('/dashboard/pelanggan/update/(:num)', 'Dashboard::updatePelanggan/$1');
 
+$routes->get('/dashboard/booking', 'Dashboard::bookingList');
+$routes->get('/dashboard/booking/tambah', 'Dashboard::bookingTambah');
+$routes->post('/dashboard/booking/simpan', 'Dashboard::bookingSimpan');
+
 
