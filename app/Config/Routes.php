@@ -23,3 +23,11 @@ $routes->get('/dashboard/lapangan/hapus/(:num)', 'Dashboard::hapusLapangan/$1');
 $routes->get('/dashboard/lapangan/edit/(:num)', 'Dashboard::editLapangan/$1');
 $routes->post('/dashboard/lapangan/update/(:num)', 'Dashboard::updateLapangan/$1');
 
+$routes->get('/dashboard/pelanggan', 'Dashboard::pelanggan');
+$routes->post('/dashboard/pelanggan/tambah', 'Dashboard::tambahPelanggan');
+$routes->get('/dashboard/pelanggan/tambah', 'Dashboard::formPelanggan');
+$routes->get('/dashboard/pelanggan/hapus/(:num)', 'Dashboard::hapusPelanggan/$1');
+$routes->get('/dashboard/pelanggan/edit/(:num)', 'Dashboard::editPelanggan/$1');
+$routes->post('/dashboard/pelanggan/update/(:num)', 'Dashboard::updatePelanggan/$1');
+
+
