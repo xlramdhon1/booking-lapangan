@@ -16,60 +16,54 @@
 </script>
 <?php endif; ?>
 
-<a href="<?= base_url('/dashboard/booking/tambah') ?>">
-  <button>Tambah Booking Baru</button>
-</a>
-
-<br><br>
-
-<table border="1" cellpadding="10" cellspacing="0">
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
   <thead>
     <tr>
       <th>No</th>
       <th>Nama Pelanggan</th>
       <th>Nama Lapangan</th>
       <th>Tanggal Booking</th>
-      <th>Durasi (jam)</th>
+      <th>Durasi (Jam)</th>
       <th>Status</th>
-      <th>Total Bayar (Rp)</th>
+      <th>Total Bayar</th>
       <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
     <?php $no = 1; foreach($bookings as $booking): ?>
-    <tr>
-      <td><?= $no++ ?></td>
-      <td><?= esc($booking['pelanggan_nama']) ?></td>
-      <td><?= esc($booking['lapangan_nama']) ?></td>
-      <td><?= date('d-m-Y H:i', strtotime($booking['tanggal_booking'])) ?></td>
-      <td><?= esc($booking['durasi']) ?></td>
-      <td><?= ucfirst(esc($booking['status'])) ?></td>
-      <td><?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
-      <td>
-        <!-- Contoh aksi: edit, hapus (bisa ditambah nanti) -->
-        <a href="#">Edit</a> |
-        <a href="#" onclick="confirmDelete(<?= $booking['id'] ?>)">Hapus</a>
-
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-          function confirmDelete(id) {
-            Swal.fire({
-              title: 'Yakin ingin menghapus booking ini?',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Ya, hapus!',
-              cancelButtonText: 'Batal'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.href = '<?= base_url('/dashboard/booking/hapus') ?>/' + id;
-              }
-            });
-          }
-        </script>
-      </td>
-    </tr>
+      <tr>
+        <td><?= $no++ ?></td>
+        <td><?= esc($booking['pelanggan_nama']) ?></td>
+        <td><?= esc($booking['lapangan_nama']) ?></td>
+        <td><?= esc($booking['tanggal_booking']) ?></td>
+        <td><?= esc($booking['durasi']) ?></td>
+        <td><?= esc($booking['status']) ?></td>
+        <td>Rp <?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
+        <td>
+          <!-- Bisa tambah tombol edit / hapus atau update status -->
+          <a href="<?= base_url('/dashboard/booking/edit/' . $booking['id']) ?>">Edit</a> |
+          <a href="#" onclick="confirmDelete(<?= $booking['id'] ?>)">Hapus</a>
+        </td>
+      </tr>
     <?php endforeach; ?>
   </tbody>
 </table>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function confirmDelete(id) {
+  Swal.fire({
+    title: 'Yakin ingin menghapus booking ini?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Ya, hapus!',
+    cancelButtonText: 'Batal'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = '<?= base_url('/dashboard/booking/hapus') ?>/' + id;
+    }
+  });
+}
+</script>
 
 <?= $this->endSection() ?>

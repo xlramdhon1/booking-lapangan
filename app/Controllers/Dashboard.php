@@ -13,9 +13,9 @@ class Dashboard extends BaseController
 
     public function __construct()
     {
-        $this->lapanganModel = new LapanganModel();
-        $this->pelangganModel = new PelangganModel();
-        $this->bookingModel = new BookingModel();
+        $this->lapanganModel = new \App\Models\LapanganModel();
+        $this->pelangganModel = new \App\Models\PelangganModel();
+        $this->bookingModel = new \App\Models\BookingModel();
     }
 
     public function index()
@@ -143,15 +143,15 @@ class Dashboard extends BaseController
 // Tampilkan daftar booking
     public function booking()
     {
-    // ambil data booking dengan join pelanggan dan lapangan
     $data['bookings'] = $this->bookingModel
         ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
         ->join('lapangan', 'lapangan.id = booking.lapangan_id')
-        ->select('booking.*, pelanggan.nama as pelanggan_nama, lapangan.nama as lapangan_nama')
+        ->select('booking.*, pelanggan.nama as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama')
         ->findAll();
 
-    return view('dashboard/booking/index', $data);
+    return view('dashboard/booking/booking_list', $data);
     }
+
 
 // Form tambah booking
     public function bookingTambah()
@@ -165,19 +165,30 @@ class Dashboard extends BaseController
 // Proses simpan booking
     public function bookingSimpan()
     {
+    $tanggal = $this->request->getPost('tanggal'); // ex: 2025-07-22
+    $jam     = $this->request->getPost('jam');     // ex: 08:00
+    $tanggal_booking = $tanggal . ' ' . $jam;      // ex: "2025-07-22 08:00"
+
     $data = [
-        'pelanggan_id' => $this->request->getPost('pelanggan_id'),
-        'lapangan_id' => $this->request->getPost('lapangan_id'),
-        'tanggal_booking' => $this->request->getPost('tanggal_booking'),
-        'durasi' => $this->request->getPost('durasi'),
-        'status' => 'pending',
-        'total_bayar' => $this->request->getPost('total_bayar'),
+        'pelanggan_id'      => $this->request->getPost('pelanggan_id'),
+        'lapangan_id'       => $this->request->getPost('lapangan_id'),
+        'tanggal_booking'   => $tanggal_booking,
+        'durasi'            => $this->request->getPost('durasi'),
+        'status'            => 'pending',
+        'total_bayar'       => $this->request->getPost('total_bayar'),
     ];
 
     $this->bookingModel->insert($data);
 
     return redirect()->to('/dashboard/booking')->with('success', 'Booking berhasil ditambahkan!');
     }
+
+    public function hapusBooking($id)
+    {
+    $this->bookingModel->delete($id);
+    return redirect()->to('/dashboard/booking')->with('success', 'Booking berhasil dihapus!');
+    }
+
 
 
 }

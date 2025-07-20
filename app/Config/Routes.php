@@ -13,9 +13,6 @@ $routes->get('/auth/logout', 'Auth::logout');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/dashboard/lapangan', 'Dashboard::lapangan');
 $routes->get('/dashboard/pelanggan', 'Dashboard::pelanggan');
-$routes->get('/dashboard/booking/add', 'Dashboard::bookingAdd');
-$routes->get('/dashboard/booking/list', 'Dashboard::bookingList');
-$routes->get('/dashboard/booking/update', 'Dashboard::bookingUpdate');
 
 $routes->get('/dashboard/lapangan', 'Dashboard::lapangan');
 $routes->post('/dashboard/lapangan/tambah', 'Dashboard::tambahLapangan');
@@ -30,8 +27,11 @@ $routes->get('/dashboard/pelanggan/hapus/(:num)', 'Dashboard::hapusPelanggan/$1'
 $routes->get('/dashboard/pelanggan/edit/(:num)', 'Dashboard::editPelanggan/$1');
 $routes->post('/dashboard/pelanggan/update/(:num)', 'Dashboard::updatePelanggan/$1');
 
-$routes->get('/dashboard/booking', 'Dashboard::bookingList');
+$routes->get('/dashboard/booking', 'Dashboard::booking');
 $routes->get('/dashboard/booking/tambah', 'Dashboard::bookingTambah');
 $routes->post('/dashboard/booking/simpan', 'Dashboard::bookingSimpan');
+$routes->get('/dashboard/booking/list', 'Dashboard::booking');
+$routes->get('/dashboard/booking/update', 'Dashboard::bookingUpdate');
+
 
 
