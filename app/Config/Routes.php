@@ -20,3 +20,6 @@ $routes->get('/dashboard/booking/update', 'Dashboard::bookingUpdate');
 $routes->get('/dashboard/lapangan', 'Dashboard::lapangan');
 $routes->post('/dashboard/lapangan/tambah', 'Dashboard::tambahLapangan');
 $routes->get('/dashboard/lapangan/hapus/(:num)', 'Dashboard::hapusLapangan/$1');
+$routes->get('/dashboard/lapangan/edit/(:num)', 'Dashboard::editLapangan/$1');
+$routes->post('/dashboard/lapangan/update/(:num)', 'Dashboard::updateLapangan/$1');
+

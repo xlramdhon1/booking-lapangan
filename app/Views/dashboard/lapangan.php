@@ -34,7 +34,7 @@
       <td><?= esc($row['jenis_olahraga']) ?></td>
       <td>Rp<?= number_format($row['harga_per_jam'], 0, ',', '.') ?></td>
       <td>
-        <!-- Nanti bisa tambah edit -->
+        <a href="<?= base_url('/dashboard/lapangan/edit/' . $row['id']) ?>">Edit</a> |
         <a href="<?= base_url('/dashboard/lapangan/hapus/' . $row['id']) ?>" onclick="return confirm('Yakin hapus?')">Hapus</a>
       </td>
     </tr>
