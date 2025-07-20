@@ -1,0 +1,25 @@
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+  font-size: 0.85rem;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.badge-pending {
+  background-color: orange;
+}
+
+.badge-confirmed {
+  background-color: green;
+}
+
+.badge-cancelled {
+  background-color: red;
+}
+
+.badge-completed {
+  background-color: blue;
+}

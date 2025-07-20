@@ -39,7 +39,20 @@
           <?= date('Y-m-d', strtotime($booking['tanggal_booking'])) ?> pukul <?= esc(substr($booking['jam_mulai'], 0, 5)) ?>
         </td>
         <td><?= esc($booking['durasi']) ?></td>
-        <td><?= esc($booking['status']) ?></td>
+        <td>
+            <?php
+            $status = $booking['status'];
+            $class = 'badge-';
+            switch ($status) {
+            case 'pending': $class .= 'pending'; break;
+            case 'confirmed': $class .= 'confirmed'; break;
+            case 'cancelled': $class .= 'cancelled'; break;
+            case 'completed': $class .= 'completed'; break;
+            default: $class = '';
+            }
+            ?>
+            <span class="badge <?= $class ?>"><?= ucfirst($status) ?></span>
+        </td>
         <td>Rp <?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
         <td>
           <a href="<?= base_url('/dashboard/booking/status/' . $booking['id']) ?>">Ubah Status</a> |
