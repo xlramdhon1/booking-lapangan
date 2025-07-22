@@ -3,14 +3,14 @@
 
 <h2>Tambah Booking Baru</h2>
 
-<form action="<?= base_url('/dashboard/booking/simpan') ?>" method="post">
+<form action="<?= base_url('/booking/simpan') ?>" method="post">
   <?= csrf_field() ?>
 
   <label for="pelanggan_id">Pilih Pelanggan:</label><br>
   <select name="pelanggan_id" id="pelanggan_id" required>
     <option value="">-- Pilih Pelanggan --</option>
     <?php foreach($pelanggan as $p): ?>
-      <option value="<?= $p['id'] ?>"><?= esc($p['nama']) ?></option>
+      <option value="<?= $p['id'] ?>"><?= esc($p['nama_pelanggan']) ?></option>
     <?php endforeach; ?>
   </select>
   <br><br>
@@ -48,7 +48,7 @@
   <br><br>
 
   <button type="submit">Tambah Booking</button>
-  <a href="<?= base_url('/dashboard/booking') ?>">Batal</a>
+  <a href="<?= base_url('booking') ?>">Batal</a>
 </form>
 
 <script>

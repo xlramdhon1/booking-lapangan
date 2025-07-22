@@ -54,7 +54,7 @@
   <?php $no = 1; foreach ($pelanggan as $row): ?>
     <tr>
       <td><?= $no++ ?></td>
-      <td><?= esc($row['nama']) ?></td>
+      <td><?= esc($row['nama_pelanggan']) ?></td>
       <td><?= esc($row['no_hp']) ?></td>
       <td><?= esc($row['email']) ?></td>
       <td><?= esc($row['alamat']) ?></td>

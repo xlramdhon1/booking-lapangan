@@ -56,8 +56,8 @@
         </td>
         <td>Rp <?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
         <td>
-          <a href="<?= base_url('/dashboard/booking/status/' . $booking['id']) ?>">Ubah Status</a> |
-          <a href="<?= base_url('/dashboard/booking/edit/' . $booking['id']) ?>">Edit</a> |
+          <a href="<?= base_url('/booking/status/' . $booking['id']) ?>">Ubah Status</a> |
+          <a href="<?= base_url('/booking/edit/' . $booking['id']) ?>">Edit</a> |
           <a href="#" onclick="confirmDelete(<?= $booking['id'] ?>)">Hapus</a>
         </td>
       </tr>
@@ -76,7 +76,7 @@ function confirmDelete(id) {
     cancelButtonText: 'Batal'
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location.href = '<?= base_url('/dashboard/booking/hapus') ?>/' + id;
+      window.location.href = '<?= base_url('/booking/hapus') ?>/' + id;
     }
   });
 }

@@ -3,12 +3,12 @@
 
 <h2>Edit Booking</h2>
 
-<form action="<?= base_url('/dashboard/booking/update/' . $booking['id']) ?>" method="post">
+<form action="<?= base_url('/booking/update/' . $booking['id']) ?>" method="post">
     <label for="pelanggan_id">Pelanggan</label>
     <select name="pelanggan_id" id="pelanggan_id" required>
         <?php foreach($pelanggan as $p): ?>
             <option value="<?= $p['id'] ?>" <?= $booking['pelanggan_id'] == $p['id'] ? 'selected' : '' ?>>
-                <?= esc($p['nama']) ?>
+                <?= esc($p['nama_pelanggan']) ?>
             </option>
         <?php endforeach; ?>
     </select>
@@ -40,7 +40,8 @@
 
     <label for="total_bayar">Total Bayar</label>
     <input type="text" id="total_bayar" name="total_bayar" value="<?= $booking['total_bayar'] ?>" readonly>
-
+    <br>
+    <br>
     <button type="submit">Update Booking</button>
 </form>
 

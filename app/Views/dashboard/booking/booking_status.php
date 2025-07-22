@@ -3,7 +3,7 @@
 
 <h2>Update Status dan Pembayaran Booking</h2>
 
-<form action="<?= base_url('/dashboard/booking/status/update/' . $booking['id']) ?>" method="post">
+<form action="<?= base_url('/booking/status/update/' . $booking['id']) ?>" method="post">
     <p><strong>Pelanggan:</strong> <?= esc($pelanggan['nama']) ?></p>
     <p><strong>Lapangan:</strong> <?= esc($lapangan['nama_lapangan']) ?></p>
     <p><strong>Tanggal Booking:</strong> <?= esc($booking['tanggal_booking']) ?></p>

@@ -34,7 +34,7 @@
 <?php endif; ?>
 
 <!-- Form Tambah -->
-<form method="post" action="<?= base_url('/dashboard/lapangan/tambah') ?>">
+<form method="post" action="<?= base_url('/lapangan/tambah') ?>">
   <input type="text" name="nama_lapangan" placeholder="Nama Lapangan" required>
   <input type="text" name="jenis_olahraga" placeholder="Jenis Olahraga" required>
   <input type="number" name="harga_per_jam" placeholder="Harga per Jam" required>
@@ -60,8 +60,8 @@
       <td><?= esc($row['jenis_olahraga']) ?></td>
       <td>Rp<?= number_format($row['harga_per_jam'], 0, ',', '.') ?></td>
       <td>
-        <a href="<?= base_url('/dashboard/lapangan/edit/' . $row['id']) ?>">Edit</a> |
-        <a href="<?= base_url('/dashboard/lapangan/hapus/' . $row['id']) ?>" onclick="return confirm('Yakin hapus?')">Hapus</a>
+        <a href="<?= base_url('lapangan/edit/' . $row['id']) ?>">Edit</a> |
+        <a href="<?= base_url('/lapangan/hapus/' . $row['id']) ?>" onclick="return confirm('Yakin hapus?')">Hapus</a>
       </td>
     </tr>
   <?php endforeach; ?>
@@ -78,7 +78,7 @@
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '<?= base_url('/dashboard/lapangan/hapus') ?>/' + id;
+                window.location.href = '<?= base_url('lapangan/hapus') ?>/' + id;
             }
         });
     }

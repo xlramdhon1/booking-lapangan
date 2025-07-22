@@ -4,10 +4,10 @@
 <h2>Ubah Status Booking</h2>
 
 <p><strong>Pelanggan:</strong> <?= esc($booking['pelanggan_nama']) ?></p>
-<p><strong>Lapangan:</strong> <?= esc($booking['nama_lapangan']) ?></p>
+<p><strong>Lapangan:</strong> <?= esc($booking['lapangan_nama']) ?></p>
 <p><strong>Tanggal Booking:</strong> <?= date('Y-m-d', strtotime($booking['tanggal_booking'])) ?> pukul <?= esc(substr($booking['jam_mulai'], 0, 5)) ?></p>
 
-<form action="<?= base_url('/dashboard/booking/status/update/' . $booking['id']) ?>" method="post">
+<form action="<?= base_url('/booking/status/update/' . $booking['id']) ?>" method="post">
     <label for="status">Status:</label>
     <select name="status" id="status" required>
         <option value="pending" <?= $booking['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>

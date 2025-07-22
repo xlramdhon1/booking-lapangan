@@ -12,11 +12,11 @@
       <h2>Management<br>Lapangan</h2>
       <ul>
         <li><a href="<?= base_url('/dashboard') ?>">Dashboard</a></li>
-        <li><a href="<?= base_url('/dashboard/lapangan') ?>">Data Lapangan</a></li>
-        <li><a href="<?= base_url('/dashboard/pelanggan') ?>">Data Pelanggan</a></li>
-        <li><a href="<?= base_url('/dashboard/booking/tambah') ?>">Tambah Booking</a></li>
-        <li><a href="<?= base_url('/dashboard/booking') ?>">Lihat Booking</a></li>
-        <li><a href="<?= base_url('/dashboard/booking/status') ?>">Status Booking</a></li>
+        <li><a href="<?= base_url('/lapangan') ?>">Data Lapangan</a></li>
+        <li><a href="<?= base_url('/pelanggan') ?>">Data Pelanggan</a></li>
+        <li><a href="<?= base_url('/booking/tambah') ?>">Tambah Booking</a></li>
+        <li><a href="<?= base_url('/booking') ?>">Lihat Booking</a></li>
+        <li><a href="<?= base_url('/booking/status') ?>">Status Booking</a></li>
         <li><a href="<?= base_url('/auth/logout') ?>">Logout</a></li>
       </ul>
     </div>

@@ -28,7 +28,7 @@ class Booking extends BaseController
         $builder = $this->bookingModel
             ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
             ->join('lapangan', 'lapangan.id = booking.lapangan_id')
-            ->select('booking.*, pelanggan.nama as pelanggan_nama, lapangan.nama_lapangan');
+            ->select('booking.*, pelanggan.nama_pelanggan as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama');
 
         if ($status) {
             $builder->where('booking.status', $status);
@@ -133,7 +133,7 @@ class Booking extends BaseController
         $data['bookings'] = $this->bookingModel
             ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
             ->join('lapangan', 'lapangan.id = booking.lapangan_id')
-            ->select('booking.*, pelanggan.nama as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama')
+            ->select('booking.*, pelanggan.nama_pelanggan as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama')
             ->findAll();
 
         return view('dashboard/booking/status_list', $data);
@@ -145,7 +145,7 @@ class Booking extends BaseController
         $booking = $this->bookingModel
             ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
             ->join('lapangan', 'lapangan.id = booking.lapangan_id')
-            ->select('booking.*, pelanggan.nama as pelanggan_nama, lapangan.nama_lapangan')
+            ->select('booking.*, pelanggan.nama_pelanggan as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama')
             ->find($id);
 
         if (!$booking) {
