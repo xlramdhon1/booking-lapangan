@@ -143,22 +143,40 @@ class Dashboard extends BaseController
 // Tampilkan daftar booking
     public function booking()
     {
-        $status = $this->request->getGet('status');
+    $status = $this->request->getGet('status');
+    $tanggal = $this->request->getGet('tanggal');
+    $lapangan_id = $this->request->getGet('lapangan_id');
 
-        $query = $this->bookingModel
+    $builder = $this->bookingModel
         ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
         ->join('lapangan', 'lapangan.id = booking.lapangan_id')
         ->select('booking.*, pelanggan.nama as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama');
 
-        if ($status) {
-        $query->where('booking.status', $status);
-        }
+    if ($status) {
+        $builder->where('booking.status', $status);
+    }
 
-        $data['bookings'] = $query->findAll();
+    if ($tanggal) {
+        $builder->where('DATE(booking.tanggal_booking)', $tanggal);
+    }
+
+    if ($lapangan_id) {
+        $builder->where('booking.lapangan_id', $lapangan_id);
+    }
+
+    $data['bookings'] = $builder->findAll();
+
+    // Tambahan untuk filter
+    $data['filter_status'] = $status;
+    $data['filter_tanggal'] = $tanggal;
+    $data['filter_lapangan_id'] = $lapangan_id;
+
+    // Kirim daftar lapangan untuk dropdown
+    $lapanganModel = new \App\Models\LapanganModel();
+    $data['lapanganList'] = $lapanganModel->findAll();
 
     return view('dashboard/booking/booking_list', $data);
     }
-
 
 
 // Form tambah booking

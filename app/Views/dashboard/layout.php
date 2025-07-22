@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Booking Lapangan - Prikitiw</title>
+  <title>Management Lapangan - Prikitiw</title>
   <link rel="stylesheet" href="<?= base_url('css/dashboard.css') ?>">
   <link rel="stylesheet" href="<?= base_url('css/booking-status.css') ?>">
 </head>
 <body>
   <div class="container">
     <div class="sidebar">
-      <h2>Booking<br>Lapangan</h2>
+      <h2>Management<br>Lapangan</h2>
       <ul>
         <li><a href="<?= base_url('/dashboard') ?>">Dashboard</a></li>
         <li><a href="<?= base_url('/dashboard/lapangan') ?>">Data Lapangan</a></li>

@@ -16,6 +16,34 @@
 </script>
 <?php endif; ?>
 
+<form method="get" action="<?= base_url('/dashboard/booking') ?>">
+  <label for="status">Status:</label>
+
+  <label for="lapangan_id">Lapangan:</label>
+  <select name="lapangan_id" id="lapangan_id">
+    <option value="">Semua Lapangan</option>
+    <?php foreach ($lapanganList as $l): ?>
+      <option value="<?= $l['id'] ?>" <?= $filter_lapangan_id == $l['id'] ? 'selected' : '' ?>>
+        <?= esc($l['nama_lapangan']) ?>
+      </option>
+    <?php endforeach; ?>
+  </select>
+
+  <select name="status" id="status">
+    <option value="">Semua</option>
+    <option value="pending" <?= $filter_status == 'pending' ? 'selected' : '' ?>>Pending</option>
+    <option value="confirmed" <?= $filter_status == 'confirmed' ? 'selected' : '' ?>>Confirmed</option>
+    <option value="completed" <?= $filter_status == 'completed' ? 'selected' : '' ?>>Completed</option>
+    <option value="cancelled" <?= $filter_status == 'cancelled' ? 'selected' : '' ?>>Cancelled</option>
+  </select>
+
+  <label for="tanggal">Tanggal Booking:</label>
+  <input type="date" name="tanggal" id="tanggal" value="<?= esc($filter_tanggal) ?>">
+
+  <button type="submit">Filter</button>
+</form>
+<br>
+
 <table border="1" cellpadding="10" cellspacing="0" width="100%">
   <thead>
     <tr>

@@ -48,7 +48,7 @@
   <tr>
     <th>No</th>
     <th>Nama Lapangan</th>
-    <th>Jenis</th>
+    <th>Jenis Olahraga</th>
     <th>Harga / Jam</th>
     <th>Aksi</th>
   </tr>
