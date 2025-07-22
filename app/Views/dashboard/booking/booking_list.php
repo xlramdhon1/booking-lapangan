@@ -96,7 +96,9 @@
         </td>
         <td>Rp <?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
         <td>
-          <a href="<?= base_url('booking/status/' . $booking['id']) ?>">Ubah Status</a> |
+          <?php if ($booking['status'] === 'pending'): ?>
+            <a href="<?= base_url('/payment/' . $booking['id']) ?>">Bayar</a> |
+          <?php endif; ?>
           <a href="<?= base_url('/booking/edit/' . $booking['id']) ?>">Edit</a> |
           <a href="#" onclick="confirmDelete(<?= $booking['id'] ?>)">Hapus</a>
         </td>
