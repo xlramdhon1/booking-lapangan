@@ -34,7 +34,7 @@
   <p style="color: green;"><?= session()->getFlashdata('success') ?></p>
 <?php endif; ?>
 
-<a href="<?= base_url('/dashboard/pelanggan/tambah') ?>">
+<a href="<?= base_url('/pelanggan/tambah') ?>">
   <button>Tambah Data Pelanggan</button>
 </a>
 

@@ -17,8 +17,6 @@
 <?php endif; ?>
 
 <form method="get" action="<?= base_url('/dashboard/booking') ?>">
-  <label for="status">Status:</label>
-
   <label for="lapangan_id">Lapangan:</label>
   <select name="lapangan_id" id="lapangan_id">
     <option value="">Semua Lapangan</option>
@@ -28,7 +26,7 @@
       </option>
     <?php endforeach; ?>
   </select>
-
+  <label for="status">Status:</label>
   <select name="status" id="status">
     <option value="">Semua</option>
     <option value="pending" <?= $filter_status == 'pending' ? 'selected' : '' ?>>Pending</option>
@@ -42,8 +40,23 @@
 
   <button type="submit">Filter</button>
 </form>
+
 <br>
 
+<?php if (!empty($no_result) && $no_result): ?>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    Swal.fire({
+      icon: 'info',
+      title: 'Tidak ada data',
+      text: 'Tidak ditemukan booking dengan filter tersebut.',
+      timer: 2500,
+      showConfirmButton: false
+    });
+  </script>
+<?php endif; ?>
+
+<?php if (!empty($bookings)): ?>
 <table border="1" cellpadding="10" cellspacing="0" width="100%">
   <thead>
     <tr>
@@ -91,7 +104,7 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-
+<?php endif; ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 function confirmDelete(id) {

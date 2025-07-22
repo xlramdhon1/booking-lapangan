@@ -14,29 +14,27 @@ $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/dashboard/lapangan', 'Dashboard::lapangan');
 $routes->get('/dashboard/pelanggan', 'Dashboard::pelanggan');
 
-$routes->get('/dashboard/lapangan', 'Dashboard::lapangan');
-$routes->post('/dashboard/lapangan/tambah', 'Dashboard::tambahLapangan');
-$routes->get('/dashboard/lapangan/hapus/(:num)', 'Dashboard::hapusLapangan/$1');
-$routes->get('/dashboard/lapangan/edit/(:num)', 'Dashboard::editLapangan/$1');
-$routes->post('/dashboard/lapangan/update/(:num)', 'Dashboard::updateLapangan/$1');
+$routes->get('/lapangan', 'Lapangan::lapangan');
+$routes->post('/lapangan/tambah', 'Lapangan::tambahLapangan');
+$routes->get('/lapangan/hapus/(:num)', 'Lapangan::hapusLapangan/$1');
+$routes->get('/lapangan/edit/(:num)', 'Lapangan::editLapangan/$1');
+$routes->post('/lapangan/update/(:num)', 'Lapangan::updateLapangan/$1');
 
-$routes->get('/dashboard/pelanggan', 'Dashboard::pelanggan');
-$routes->post('/dashboard/pelanggan/tambah', 'Dashboard::tambahPelanggan');
-$routes->get('/dashboard/pelanggan/tambah', 'Dashboard::formPelanggan');
-$routes->get('/dashboard/pelanggan/hapus/(:num)', 'Dashboard::hapusPelanggan/$1');
-$routes->get('/dashboard/pelanggan/edit/(:num)', 'Dashboard::editPelanggan/$1');
-$routes->post('/dashboard/pelanggan/update/(:num)', 'Dashboard::updatePelanggan/$1');
+$routes->get('/pelanggan', 'Pelanggan::pelanggan');
+$routes->get('/pelanggan/tambah', 'Pelanggan::formpPelanggan');
+$routes->post('/pelanggan/tambah', 'Pelanggan::tambahPelanggan');
+$routes->get('/pelanggan/hapus/(:num)', 'Pelanggan::hapusPelanggan/$1');
+$routes->get('/pelanggan/edit/(:num)', 'Pelanggan::editPelanggan/$1');
+$routes->post('/pelanggan/update/(:num)', 'Pelanggan::updatePelanggan/$1');
 
-$routes->get('/dashboard/booking', 'Dashboard::booking');
-$routes->get('/dashboard/booking/tambah', 'Dashboard::bookingTambah');
-$routes->post('/dashboard/booking/simpan', 'Dashboard::bookingSimpan');
-$routes->get('/dashboard/booking/list', 'Dashboard::booking');
-$routes->get('/dashboard/booking/update/(:num)', 'Dashboard::bookingUpdate/$1');
-$routes->get('/dashboard/booking/edit/(:num)', 'Dashboard::bookingEdit/$1');
-$routes->post('/dashboard/booking/update/(:num)', 'Dashboard::bookingUpdate/$1');
-$routes->get('/dashboard/booking/hapus/(:num)', 'Dashboard::hapusBooking/$1');
+$routes->get('/booking', 'Booking::booking');
+$routes->get('/booking/tambah', 'Booking::BookingTambah');
+$routes->post('/booking/simpan', 'Booking::bookingSimpan');
+$routes->get('/booking/hapus/(:num)', 'Booking::hapusBooking/$1');
+$routes->get('/booking/edit/(:num)', 'Booking::bookingEdit/$1');
+$routes->post('/booking/update/(:num)', 'Booking::bookingUpdate/$1');
 
-$routes->get('/dashboard/booking/status', 'Dashboard::bookingStatusList');
-$routes->get('/dashboard/booking/status', 'Dashboard::bookingStatusPage');
-$routes->get('/dashboard/booking/status/(:num)', 'Dashboard::bookingStatusForm/$1');
-$routes->post('/dashboard/booking/status/update/(:num)', 'Dashboard::bookingStatusUpdate/$1');
+$routes->get('/booking/status', 'Booking::bookingStatusList');
+$routes->get('/booking/status/edit/(:num)', 'Booking::bookingStatusForm/$1');
+$routes->post('/booking/status/update/(:num)', 'Booking::bookingStatusUpdate/$1');
+
