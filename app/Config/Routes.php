@@ -10,7 +10,7 @@ $routes->get('/login', 'Auth::index');
 $routes->post('/auth/login', 'Auth::login');
 $routes->get('/auth/logout', 'Auth::logout');
 
-$routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/dashboard', 'AdminDashboard::index');
 $routes->get('/dashboard/lapangan', 'Dashboard::lapangan');
 $routes->get('/dashboard/pelanggan', 'Dashboard::pelanggan');
 
@@ -39,4 +39,9 @@ $routes->get('/booking/status/edit/(:num)', 'Booking::statusForm/$1');
 $routes->post('/booking/status/update/(:num)', 'Booking::statusUpdate/$1');
 
 $routes->get('/booking/status', 'Booking::statusList');
+
+$routes->get('/admin/dashboard', 'AdminDashboard::index');
+
+$routes->get('/tampilan/admin/dashboard', 'AdminDashboard::index');
+
 
