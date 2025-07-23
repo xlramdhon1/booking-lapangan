@@ -36,16 +36,6 @@
     </form>
 </div>
 
-<?php if (session()->getFlashdata('success')): ?>
-  <script>
-    Swal.fire('Berhasil!', '<?= session()->getFlashdata('success') ?>', 'success');
-  </script>
-<?php elseif (session()->getFlashdata('error')): ?>
-  <script>
-    Swal.fire('Gagal!', '<?= session()->getFlashdata('error') ?>', 'error');
-  </script>
-<?php endif; ?>
-
 <script>
 function togglePassword() {
     const password = document.getElementById('password');
@@ -69,5 +59,18 @@ function togglePassword() {
     }
 }
 </script>
+
+<?php if (session()->getFlashdata('error')): ?>
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Gagal!',
+    text: '<?= session()->getFlashdata('error') ?>',
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+<?php endif; ?>
+
 </body>
 </html>

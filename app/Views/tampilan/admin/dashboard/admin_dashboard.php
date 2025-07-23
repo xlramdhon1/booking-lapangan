@@ -1,6 +1,19 @@
 <?= $this->extend('dashboard/layout') ?>
 <?= $this->section('content') ?>
 
+<?php if (session()->getFlashdata('success')): ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil!',
+    text: '<?= session()->getFlashdata('success') ?>',
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+<?php endif; ?>
+
 <div class="p-6">
     <h1 class="text-2xl font-bold mb-6">Dashboard Admin</h1>
 
