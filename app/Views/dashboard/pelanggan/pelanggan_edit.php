@@ -17,7 +17,7 @@
   <textarea name="alamat"><?= esc($pelanggan['alamat']) ?></textarea><br><br>
 
   <button type="submit">Update</button>
-  <a href="<?= base_url('/dashboard/pelanggan') ?>">← Kembali</a>
+  <a href="<?= base_url('/pelanggan') ?>">← Kembali</a>
 </form>
 
 <?= $this->endSection() ?>
