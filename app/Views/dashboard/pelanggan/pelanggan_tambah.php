@@ -4,7 +4,7 @@
 <h2 class="text-2xl font-bold text-blue-700 mb-6">Tambah Data Pelanggan</h2>
 
 <div class="w-full bg-white rounded-xl shadow p-4 sm:p-8 mx-auto max-w-full">
-  <form method="post" action="<?= base_url('/dashboard/pelanggan/tambah') ?>" class="space-y-5 w-full">
+  <form method="post" action="<?= base_url('/pelanggan/tambah') ?>" class="space-y-5 w-full">
     <div>
       <label class="block font-semibold mb-1">Nama</label>
       <input type="text" name="nama" required
@@ -30,7 +30,7 @@
         class="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-10 py-4 rounded-lg transition text-base w-full sm:w-auto">
         Simpan
       </button>
-      <a href="<?= base_url('/dashboard/pelanggan') ?>"
+      <a href="<?= base_url('/pelanggan') ?>"
         class="sm:ml-4 text-blue-600 hover:underline font-semibold text-center py-4 sm:py-0">← Kembali</a>
     </div>
   </form>

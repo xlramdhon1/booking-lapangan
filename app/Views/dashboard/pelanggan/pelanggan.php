@@ -57,7 +57,7 @@
                 <td class="px-4 py-3"><?= esc($row['email']) ?></td>
                 <td class="px-4 py-3"><?= esc($row['alamat']) ?></td>
                 <td class="px-4 py-3 space-x-2">
-                    <a href="<?= base_url('/dashboard/pelanggan/edit/' . $row['id']) ?>"
+                    <a href="<?= base_url('/pelanggan/edit/' . $row['id']) ?>"
                        class="text-blue-600 hover:underline">Edit</a>
                     <button type="button" onclick="confirmDelete(<?= $row['id'] ?>)"
                         class="text-red-600 hover:underline">Hapus</button>
@@ -79,7 +79,7 @@ function confirmDelete(id) {
     cancelButtonText: 'Batal'
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location.href = '<?= base_url('/dashboard/pelanggan/hapus') ?>/' + id;
+      window.location.href = '<?= base_url('/pelanggan/hapus') ?>/' + id;
     }
   });
 }

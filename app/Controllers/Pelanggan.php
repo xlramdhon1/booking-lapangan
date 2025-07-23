@@ -27,7 +27,7 @@ class Pelanggan extends BaseController
     public function tambah()
     {
         $data = [
-            'nama' => $this->request->getPost('nama'),
+            'nama_pelanggan' => $this->request->getPost('nama'),
             'no_hp' => $this->request->getPost('no_hp'),
             'email' => $this->request->getPost('email'),
             'alamat' => $this->request->getPost('alamat'),
@@ -57,7 +57,7 @@ class Pelanggan extends BaseController
     public function update($id)
     {
         $data = [
-            'nama'    => $this->request->getPost('nama'),
+            'nama_pelanggan'    => $this->request->getPost('nama_pelanggan'),
             'no_hp'   => $this->request->getPost('no_hp'),
             'email'   => $this->request->getPost('email'),
             'alamat'  => $this->request->getPost('alamat'),
