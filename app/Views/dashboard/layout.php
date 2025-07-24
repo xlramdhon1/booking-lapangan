@@ -15,13 +15,13 @@
       </div>
       <nav class="p-4">
         <ul class="space-y-2">
-          <li><a href="<?= base_url('/tampilan/admin/dashboard') ?>" class="block py-2 px-4 rounded hover:bg-blue-100">Dashboard</a></li>
-          <li><a href="<?= base_url('/lapangan') ?>" class="block py-2 px-4 rounded hover:bg-blue-100">Data Lapangan</a></li>
-          <li><a href="<?= base_url('/pelanggan') ?>" class="block py-2 px-4 rounded hover:bg-blue-100">Data Pelanggan</a></li>
-          <li><a href="<?= base_url('/booking/tambah') ?>" class="block py-2 px-4 rounded hover:bg-blue-100">Tambah Booking</a></li>
-          <li><a href="<?= base_url('/booking') ?>" class="block py-2 px-4 rounded hover:bg-blue-100">Lihat Booking</a></li>
-          <li><a href="<?= base_url('/booking/status') ?>" class="block py-2 px-4 rounded hover:bg-blue-100">Status Booking</a></li>
-          <li><a href="<?= base_url('/auth/logout') ?>" class="block py-2 px-4 text-red-600 rounded hover:bg-red-100">Logout</a></li>
+          <li><a href="<?= base_url('/tampilan/admin/dashboard') ?>" class="block py-2 px-4 rounded hover:bg-blue-100"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+          <li><a href="<?= base_url('/lapangan') ?>" class="block py-2 px-4 rounded hover:bg-blue-100"><i class="fa-solid fa-chalkboard"></i> Data Lapangan</a></li>
+          <li><a href="<?= base_url('/pelanggan') ?>" class="block py-2 px-4 rounded hover:bg-blue-100"><i class="fa-solid fa-circle-user"></i> Data Pelanggan</a></li>
+          <li><a href="<?= base_url('/booking/tambah') ?>" class="block py-2 px-4 rounded hover:bg-blue-100"><i class="fa-solid fa-plus"></i> Tambah Booking</a></li>
+          <li><a href="<?= base_url('/booking') ?>" class="block py-2 px-4 rounded hover:bg-blue-100"><i class="fa-solid fa-eye"></i> Lihat Booking</a></li>
+          <li><a href="<?= base_url('/booking/status') ?>" class="block py-2 px-4 rounded hover:bg-blue-100"><i class="fa-solid fa-circle-info"></i> Status Booking</a></li>
+          <li><a href="<?= base_url('/auth/logout') ?>" class="block py-2 px-4 text-red-600 rounded hover:bg-red-100"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
         </ul>
       </nav>
     </aside>
