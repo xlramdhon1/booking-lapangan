@@ -4,6 +4,11 @@ namespace App\Controllers;
 use App\Models\BookingModel;
 use App\Models\PelangganModel;
 use App\Models\LapanganModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 
 class Booking extends BaseController
 {
@@ -162,5 +167,118 @@ class Booking extends BaseController
         $this->bookingModel->update($id, ['status' => $statusBaru]);
 
         return redirect()->to('/booking')->with('success', 'Status booking diperbarui!');
+    }
+
+    // dompdf
+    public function exportPdf()
+    {
+    $lapanganModel = new \App\Models\LapanganModel();
+    $bookingModel = new \App\Models\BookingModel();
+
+    // Ambil filter
+    $lapangan_id = $this->request->getGet('lapangan_id');
+    $status      = $this->request->getGet('status');
+    $tanggal     = $this->request->getGet('tanggal');
+
+    $bookings = $bookingModel
+        ->select('booking.*, pelanggan.nama_pelanggan as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama')
+        ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
+        ->join('lapangan', 'lapangan.id = booking.lapangan_id');
+
+    if (!empty($lapangan_id)) {
+        $bookings->where('booking.lapangan_id', $lapangan_id);
+    }
+
+    if (!empty($status)) {
+        $bookings->where('booking.status', $status);
+    }
+
+    if (!empty($tanggal)) {
+        $bookings->where('DATE(booking.tanggal_booking)', $tanggal);
+    }
+
+    $data['bookings'] = $bookings->findAll();
+
+    // View untuk PDF
+    $html = view('tampilan/admin/dashboard/pdf_booking_list', $data);
+
+    // Konfigurasi Dompdf
+    $options = new Options();
+    $options->set('defaultFont', 'Arial');
+
+    $dompdf = new Dompdf($options);
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+
+    $dompdf->stream('laporan-booking.pdf', ['Attachment' => false]);
+    exit();
+    }
+
+    // excel
+    // File: app/Controllers/Booking.php
+    public function exportExcel()
+    {
+    $bookingModel = new \App\Models\BookingModel();
+
+    $lapangan_id = $this->request->getGet('lapangan_id');
+    $status      = $this->request->getGet('status');
+    $tanggal     = $this->request->getGet('tanggal');
+
+    $bookings = $bookingModel
+        ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
+        ->join('lapangan', 'lapangan.id = booking.lapangan_id')
+        ->select('booking.*, pelanggan.nama_pelanggan as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama');
+
+    if (!empty($lapangan_id)) {
+        $bookings->where('booking.lapangan_id', $lapangan_id);
+    }
+    if (!empty($status)) {
+        $bookings->where('booking.status', $status);
+    }
+    if (!empty($tanggal)) {
+        $bookings->where('DATE(booking.tanggal_booking)', $tanggal);
+    }
+
+    $bookings = $bookings->findAll();
+
+    // Buat Spreadsheet
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // Header
+    $sheet->setCellValue('A1', 'No');
+    $sheet->setCellValue('B1', 'Nama Pelanggan');
+    $sheet->setCellValue('C1', 'Nama Lapangan');
+    $sheet->setCellValue('D1', 'Tanggal Booking');
+    $sheet->setCellValue('E1', 'Jam Mulai');
+    $sheet->setCellValue('F1', 'Durasi');
+    $sheet->setCellValue('G1', 'Status');
+    $sheet->setCellValue('H1', 'Total Bayar');
+
+    // Isi Data
+    $row = 2;
+    $no = 1;
+    foreach ($bookings as $b) {
+        $sheet->setCellValue('A' . $row, $no++);
+        $sheet->setCellValue('B' . $row, $b['pelanggan_nama']);
+        $sheet->setCellValue('C' . $row, $b['lapangan_nama']);
+        $sheet->setCellValue('D' . $row, $b['tanggal_booking']);
+        $sheet->setCellValue('E' . $row, $b['jam_mulai']);
+        $sheet->setCellValue('F' . $row, $b['durasi']);
+        $sheet->setCellValue('G' . $row, $b['status']);
+        $sheet->setCellValue('H' . $row, $b['total_bayar']);
+        $row++;
+    }
+
+    // Download Excel
+    $filename = 'laporan-booking.xlsx';
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header("Content-Disposition: attachment; filename=\"$filename\"");
+    header('Cache-Control: max-age=0');
+
+    $writer = new Xlsx($spreadsheet);
+    $writer->save('php://output');
+    exit;
     }
 }

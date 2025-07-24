@@ -33,6 +33,9 @@ $routes->post('/booking/simpan', 'Booking::simpan');
 $routes->get('/booking/hapus/(:num)', 'Booking::hapus/$1');
 $routes->get('/booking/edit/(:num)', 'Booking::edit/$1');
 $routes->post('/booking/update/(:num)', 'Booking::update/$1');
+$routes->get('/booking/export/pdf', 'Booking::exportPdf');
+$routes->get('/booking/export/excel', 'Booking::exportExcel');
+
 
 $routes->get('/booking/status/(:num)', 'Booking::statusForm/$1');
 $routes->get('/booking/status/edit/(:num)', 'Booking::statusForm/$1');

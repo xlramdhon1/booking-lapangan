@@ -1,8 +1,7 @@
 <?= $this->extend('dashboard/layout') ?>
 <?= $this->section('content') ?>
 
-<h2>Kelola Status Booking</h2>
-<!-- Tabel booking, kolom status, tombol "Ubah Status" di tiap baris -->
+<h2 class="text-2xl font-bold text-blue-700 mb-6">Kelola Status Booking</h2>
 
 <?php if(session()->getFlashdata('success')): ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -17,53 +16,57 @@
 </script>
 <?php endif; ?>
 
-<table border="1" cellpadding="10" cellspacing="0" width="100%">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Nama Pelanggan</th>
-      <th>Nama Lapangan</th>
-      <th>Tanggal & Jam</th>
-      <th>Durasi (Jam)</th>
-      <th>Status</th>
-      <th>Total Bayar</th>
-      <th>Aksi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php $no = 1; foreach($bookings as $booking): ?>
+<div class="overflow-x-auto bg-white rounded-xl shadow">
+  <table class="min-w-full text-sm text-left text-gray-700">
+    <thead class="bg-blue-100 text-blue-800">
       <tr>
-        <td><?= $no++ ?></td>
-        <td><?= esc($booking['pelanggan_nama']) ?></td>
-        <td><?= esc($booking['lapangan_nama']) ?></td>
-        <td>
+        <th class="px-4 py-3">No</th>
+        <th class="px-4 py-3">Nama Pelanggan</th>
+        <th class="px-4 py-3">Nama Lapangan</th>
+        <th class="px-4 py-3">Tanggal & Jam</th>
+        <th class="px-4 py-3">Durasi (Jam)</th>
+        <th class="px-4 py-3">Status</th>
+        <th class="px-4 py-3">Total Bayar</th>
+        <th class="px-4 py-3">Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php $no = 1; foreach($bookings as $booking): ?>
+      <tr class="border-t hover:bg-blue-50">
+        <td class="px-4 py-3"><?= $no++ ?></td>
+        <td class="px-4 py-3"><?= esc($booking['pelanggan_nama']) ?></td>
+        <td class="px-4 py-3"><?= esc($booking['lapangan_nama']) ?></td>
+        <td class="px-4 py-3">
           <?= date('Y-m-d', strtotime($booking['tanggal_booking'])) ?> pukul <?= esc(substr($booking['jam_mulai'], 0, 5)) ?>
         </td>
-        <td><?= esc($booking['durasi']) ?></td>
-        <td>
-            <?php
+        <td class="px-4 py-3"><?= esc($booking['durasi']) ?></td>
+        <td class="px-4 py-3">
+          <?php
             $status = $booking['status'];
-            $class = 'badge-';
+            $badgeClass = '';
             switch ($status) {
-            case 'pending': $class .= 'pending'; break;
-            case 'confirmed': $class .= 'confirmed'; break;
-            case 'cancelled': $class .= 'cancelled'; break;
-            case 'completed': $class .= 'completed'; break;
-            default: $class = '';
+              case 'pending': $badgeClass = 'bg-yellow-100 text-yellow-800'; break;
+              case 'confirmed': $badgeClass = 'bg-blue-100 text-blue-800'; break;
+              case 'cancelled': $badgeClass = 'bg-red-100 text-red-800'; break;
+              case 'completed': $badgeClass = 'bg-green-100 text-green-800'; break;
+              default: $badgeClass = 'bg-gray-100 text-gray-800';
             }
-            ?>
-            <span class="badge <?= $class ?>"><?= ucfirst($status) ?></span>
+          ?>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold <?= $badgeClass ?>">
+            <?= ucfirst($status) ?>
+          </span>
         </td>
-        <td>Rp <?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
-        <td>
-          <a href="<?= base_url('/booking/status/' . $booking['id']) ?>">Ubah Status</a> |
-          <a href="<?= base_url('/booking/edit/' . $booking['id']) ?>">Edit</a> |
-          <a href="#" onclick="confirmDelete(<?= $booking['id'] ?>)">Hapus</a>
+        <td class="px-4 py-3">Rp <?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
+        <td class="px-4 py-3 space-x-2">
+          <a href="<?= base_url('/booking/status/' . $booking['id']) ?>" class="text-indigo-600 hover:underline">Ubah Status</a> |
+          <a href="<?= base_url('/booking/edit/' . $booking['id']) ?>" class="text-blue-600 hover:underline">Edit</a> |
+          <button type="button" onclick="confirmDelete(<?= $booking['id'] ?>)" class="text-red-600 hover:underline">Hapus</button>
         </td>
       </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
