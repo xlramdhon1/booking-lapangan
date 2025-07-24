@@ -1,5 +1,6 @@
 <?= $this->extend('dashboard/layout') ?>
 <?= $this->section('content') ?>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <h2 class="text-2xl font-bold text-blue-700 mb-6">Daftar Booking</h2>
 
@@ -48,22 +49,21 @@
   <div class="flex flex-col md:flex-row gap-2 mt-4 md:mt-0">
   <button type="submit"
     class="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-2 rounded transition w-full md:w-auto">
-    Filter
+    <i class="fas fa-filter"></i> Filter
   </button>
   <?php if (!empty($bookings)): ?>
     <a href="<?= base_url('/booking/export/pdf?lapangan_id=' . esc($filter_lapangan_id) . '&status=' . esc($filter_status) . '&tanggal=' . esc($filter_tanggal)) ?>"
        class="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded transition w-full md:w-auto"
        target="_blank">
-      Export PDF
+      <i class="fas fa-file-pdf"></i> Export PDF
     </a>
     <a href="<?= base_url('/booking/export/excel?lapangan_id=' . esc($filter_lapangan_id) . '&status=' . esc($filter_status) . '&tanggal=' . esc($filter_tanggal)) ?>"
        class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded transition w-full md:w-auto"
        target="_blank">
-      Export Excel
+      <i class="fas fa-file-excel"></i> Export Excel
     </a>
   <?php endif; ?>
 </a>
-
 </div>
 </form>
 
