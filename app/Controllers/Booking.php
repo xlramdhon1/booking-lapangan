@@ -25,37 +25,49 @@ class Booking extends BaseController
     }
 
     public function index()
-    {
-        $status = $this->request->getGet('status');
-        $tanggal = $this->request->getGet('tanggal');
-        $lapangan_id = $this->request->getGet('lapangan_id');
+{
+    $status = $this->request->getGet('status');
+    $tanggal = $this->request->getGet('tanggal');
+    $lapangan_id = $this->request->getGet('lapangan_id');
 
-        $builder = $this->bookingModel
-            ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
-            ->join('lapangan', 'lapangan.id = booking.lapangan_id')
-            ->select('booking.*, pelanggan.nama_pelanggan as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama');
+    $builder = $this->bookingModel
+        ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
+        ->join('lapangan', 'lapangan.id = booking.lapangan_id')
+        ->select('booking.*, pelanggan.nama_pelanggan as pelanggan_nama, lapangan.nama_lapangan as lapangan_nama');
 
-        if ($status) {
-            $builder->where('booking.status', $status);
-        }
+    // Cek apakah ada filter yang aktif
+    $hasFilter = false;
 
-        if ($tanggal) {
-            $builder->where('DATE(booking.tanggal_booking)', $tanggal);
-        }
-
-        if ($lapangan_id) {
-            $builder->where('booking.lapangan_id', $lapangan_id);
-        }
-
-        $data['bookings'] = $builder->findAll();
-        $data['filter_status'] = $status;
-        $data['filter_tanggal'] = $tanggal;
-        $data['filter_lapangan_id'] = $lapangan_id;
-        $data['lapanganList'] = $this->lapanganModel->findAll();
-        $data['no_result'] = empty($data['bookings']);
-
-        return view('dashboard/booking/booking_list', $data);
+    if ($status !== null && $status !== '') {
+        $builder->where('booking.status', $status);
+        $hasFilter = true;
     }
+
+    if ($tanggal !== null && $tanggal !== '') {
+        $builder->where('DATE(booking.tanggal_booking)', $tanggal);
+        $hasFilter = true;
+    }
+
+    if ($lapangan_id !== null && $lapangan_id !== '') {
+        $builder->where('booking.lapangan_id', $lapangan_id);
+        $hasFilter = true;
+    }
+
+    $bookings = $builder->findAll();
+
+    $data = [
+        'bookings' => $bookings,
+        'filter_status' => $status,
+        'filter_tanggal' => $tanggal,
+        'filter_lapangan_id' => $lapangan_id,
+        'lapanganList' => $this->lapanganModel->findAll(),
+        'no_result' => $hasFilter && empty($bookings), // hanya tampilkan alert jika memang filter aktif
+    ];
+
+    return view('dashboard/booking/booking_list', $data);
+}
+
+
 
     public function tambah()
     {
@@ -267,4 +279,25 @@ class Booking extends BaseController
         $writer->save('php://output');
         exit;
     }
+    public function updateStatus()
+{
+    $json = $this->request->getJSON();
+    $bookingId = $json->booking_id ?? null;
+
+    if (!$bookingId) {
+        return $this->response->setJSON(['status' => false, 'message' => 'Invalid booking ID']);
+    }
+
+    // Update status booking ke "confirmed"
+    $updated = $this->bookingModel->update($bookingId, [
+        'status' => 'confirmed',
+        'pembayaran' => 'midtrans'
+    ]);
+
+    return $this->response->setJSON([
+        'status' => $updated,
+        'message' => $updated ? 'Status updated' : 'Failed to update'
+    ]);
+}
+
 }

@@ -137,7 +137,7 @@
           <td class="px-4 py-3">Rp <?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
           <td class="px-4 py-3 space-x-2">
             <?php if ($booking['status'] === 'pending'): ?>
-              <a href="<?= base_url('/payment/' . $booking['id']) ?>" class="text-green-600 hover:underline">Bayar</a> |
+              <a href="<?= base_url('/payment/bayar/' . $booking['id']) ?>" class="text-green-600 hover:underline">Bayar</a> |
             <?php endif; ?>
             <a href="<?= base_url('/booking/edit/' . $booking['id']) ?>" class="text-blue-600 hover:underline">Edit</a> |
             <button type="button" onclick="confirmDelete(<?= $booking['id'] ?>)" class="text-red-600 hover:underline">Hapus</button>
@@ -165,5 +165,30 @@ function confirmDelete(id) {
   });
 }
 </script>
+
+<script src="https://app.sandbox.midtrans.com/snap/v1/transactions" data-client-key="Mid-client-0ef5cP54fhUsJaMr"></script>
+
+<script>
+function payWithSnap(token) {
+  window.snap.pay(token, {
+    onSuccess: function(result){
+        console.log('Success:', result);
+        location.reload(); // atau redirect ke halaman sukses
+    },
+    onPending: function(result){
+        console.log('Pending:', result);
+        location.reload();
+    },
+    onError: function(result){
+        console.log('Error:', result);
+        alert('Pembayaran gagal');
+    },
+    onClose: function(){
+        console.log('Popup ditutup oleh user');
+    }
+  });
+}
+</script>
+
 
 <?= $this->endSection() ?>

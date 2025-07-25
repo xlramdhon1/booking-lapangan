@@ -47,4 +47,14 @@ $routes->get('/admin/dashboard', 'AdminDashboard::index');
 
 $routes->get('/tampilan/admin/dashboard', 'AdminDashboard::index');
 
+$routes->get('/payment', 'Payment::index');
+$routes->get('/payment/token', 'Payment::token');
+$routes->post('/payment/finish', 'Payment::finish');
 
+$routes->get('/payment/bayar/(:num)', 'Payment::bayar/$1');
+$routes->post('/payment/tokenize', 'Payment::tokenize');
+$routes->post('payment/notification', 'Payment::notification');
+$routes->post('booking/update-status', 'Booking::updateStatus');
+
+
+$routes->get('/tes-snap', 'TesSnap::index');
