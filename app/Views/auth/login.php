@@ -5,6 +5,7 @@
     <title>Login Admin</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="<?= base_url('css/tailwind.css') ?>" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-to-br from-blue-900 to-blue-400 min-h-screen flex items-center justify-center">
 
@@ -31,7 +32,7 @@
         </div>
         <button type="submit"
             class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 rounded transition">
-            Login
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
         </button>
     </form>
 </div>

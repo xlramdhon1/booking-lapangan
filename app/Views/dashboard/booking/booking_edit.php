@@ -74,6 +74,17 @@
     </div>
   </form>
 </div>
+<?php if (session()->getFlashdata('error')): ?>
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Gagal!',
+    text: '<?= session()->getFlashdata('error') ?>',
+    timer: 3000,
+    showConfirmButton: true
+});
+</script>
+<?php endif; ?>
 
 <script>
   function updateTotalBayar() {

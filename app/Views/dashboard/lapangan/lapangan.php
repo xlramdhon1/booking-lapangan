@@ -43,7 +43,7 @@ Swal.fire({
         <div class="md:col-span-3">
             <button type="submit"
                     class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded w-full">
-                Tambah
+                <i class="fa-solid fa-plus"></i> Tambah
             </button>
         </div>
     </form>

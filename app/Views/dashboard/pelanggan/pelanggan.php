@@ -1,5 +1,6 @@
 <?= $this->extend('dashboard/layout') ?>
 <?= $this->section('content') ?>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <?php if(session()->getFlashdata('success')): ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -31,7 +32,7 @@
     <h2 class="text-2xl font-bold text-blue-700">Data Pelanggan</h2>
     <a href="<?= base_url('/pelanggan/tambah') ?>">
         <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition font-semibold">
-            Tambah Data Pelanggan
+            <i class="fa-solid fa-user-plus"></i> Tambah Data Pelanggan
         </button>
     </a>
 </div>

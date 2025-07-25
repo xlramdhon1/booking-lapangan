@@ -16,6 +16,19 @@
   });
 </script>
 <?php endif; ?>
+<?php if(session()->getFlashdata('error')): ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  Swal.fire({
+    icon: 'error',
+    title: 'Gagal!',
+    text: '<?= session()->getFlashdata('error') ?>',
+    timer: 3000,
+    showConfirmButton: false
+  });
+</script>
+<?php endif; ?>
+
 
 <form method="get" action="<?= base_url('/booking') ?>" class="flex flex-col md:flex-row md:items-end gap-4 mb-6 bg-white p-4 rounded-lg shadow">
   <div>

@@ -65,6 +65,32 @@
     </div>
   </form>
 </div>
+<<?php if (session()->getFlashdata('error')): ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Gagal!',
+    text: '<?= session()->getFlashdata('error') ?>',
+    timer: 2500,
+    showConfirmButton: false
+});
+</script>
+<?php endif; ?>
+
+<?php if (session()->getFlashdata('success')): ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil!',
+    text: '<?= session()->getFlashdata('success') ?>',
+    timer: 2500,
+    showConfirmButton: false
+});
+</script>
+<?php endif; ?>
+
 
 <script>
   const lapanganSelect = document.getElementById('lapangan_id');
