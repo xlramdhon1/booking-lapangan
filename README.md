@@ -1,68 +1,100 @@
-# CodeIgniter 4 Application Starter
+# Proyek Aplikasi Booking Lapangan
 
-## What is CodeIgniter?
+Aplikasi web untuk melakukan pemesanan (booking) lapangan olahraga. Dibangun menggunakan CodeIgniter 4 di sisi backend, serta HTML, Tailwind CSS, dan JavaScript di sisi frontend. Dilengkapi juga dengan gerbang pembayaran Midtrans.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Tentang Proyek
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+Tujuan dari proyek ini adalah untuk menyediakan platform digital yang memudahkan pengguna dalam mencari, melihat jadwal ketersediaan, dan memesan lapangan olahraga secara online. Administrator dapat mengelola data lapangan, jadwal, dan laporan pemesanan.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+---
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### Dibangun Dengan
 
-## Installation & updates
+Berikut adalah teknologi utama yang digunakan dalam proyek ini:
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+**Backend:**
+*   [CodeIgniter 4](https://codeigniter.com/) - Framework PHP
+*   [Midtrans PHP Library](https://github.com/Midtrans/midtrans-php) - Untuk proses pembayaran
+*   [PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) - Untuk membuat dan membaca file Excel
+*   [Dompdf](https://github.com/dompdf/dompdf) - Untuk membuat file PDF
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+**Frontend:**
+*   HTML5
+*   [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
+*   [FullCalendar](https://fullcalendar.io/) - Untuk menampilkan jadwal booking
+*   [SweetAlert2](https://sweetalert2.github.io/) - Untuk notifikasi dan pop-up interaktif
 
-## Setup
+**Database:**
+*   MySQL (atau database lain yang didukung CodeIgniter 4)
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+---
 
-## Important Change with index.php
+## Memulai
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah berikut.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### Prasyarat
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Pastikan perangkat Anda sudah terinstall:
+*   PHP 8.1 atau lebih baru
+*   Composer
+*   Node.js dan NPM
+*   Web Server (misalnya XAMPP, Nginx)
+*   Database (misalnya MySQL/MariaDB)
 
-## Repository Management
+### Instalasi
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+1.  **Clone repository**
+    ```sh
+    git clone <url-repository-anda>
+    cd booking-lapangan
+    ```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+2.  **Install dependensi PHP**
+    ```sh
+    composer install
+    ```
 
-## Server Requirements
+3.  **Install dependensi JavaScript**
+    ```sh
+    npm install
+    ```
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+4.  **Konfigurasi Environment**
+    *   Salin file `env` menjadi `.env`.
+    *   Buka file `.env` dan sesuaikan konfigurasi berikut:
+        *   `CI_ENVIRONMENT = development`
+        *   `app.baseURL = 'http://localhost:8080'`
+        *   Konfigurasi database (host, database, user, password).
+        *   Konfigurasi Midtrans (Server Key & Client Key).
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+5.  **Buat Database**
+    *   Buat sebuah database baru di MySQL sesuai dengan nama yang Anda atur di file `.env`.
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+6.  **Jalankan Migrasi Database**
+    Jalankan perintah ini dari terminal di root proyek untuk membuat tabel-tabel yang dibutuhkan.
+    ```sh
+    php spark migrate
+    ```
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+7.  **Jalankan Server Development**
+    ```sh
+    php spark serve
+    ```
+    Aplikasi Anda sekarang akan berjalan di `http://localhost:8080`.
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+---
+
+## Fitur Utama
+
+*   ✅ **Manajemen Booking:** Pengguna dapat memesan lapangan berdasarkan jadwal yang tersedia.
+*   📅 **Kalender Interaktif:** Jadwal ketersediaan lapangan ditampilkan menggunakan FullCalendar.
+*   💳 **Pembayaran Online:** Terintegrasi dengan Midtrans untuk berbagai metode pembayaran.
+*   📄 **Laporan:** Admin dapat mengunduh laporan pemesanan dalam format PDF atau Excel.
+*   🔐 **Autentikasi:** Sistem login untuk pengguna dan admin.
+
+---
+
+## Lisensi
+
+Didistribusikan di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.
