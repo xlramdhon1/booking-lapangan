@@ -46,7 +46,7 @@ Pastikan perangkat Anda sudah terinstall:
 
 1.  **Clone repository**
     ```sh
-    git clone <url-repository-anda>
+    git clone https://github.com/xlramdhon1/booking-lapangan.git
     cd booking-lapangan
     ```
 
@@ -83,6 +83,7 @@ Pastikan perangkat Anda sudah terinstall:
     ```
     Aplikasi Anda sekarang akan berjalan di `http://localhost:8080`.
 
+8. **Jalankan 
 ---
 
 ## Fitur Utama
