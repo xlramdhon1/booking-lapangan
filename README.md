@@ -95,6 +95,14 @@ Pastikan perangkat Anda sudah terinstall:
 
 ---
 
+## Kontributor
+
+*   **[Ramadhoni Gibran Maulana]** - *Initial Work* - ['ramdhon1.ssss@gmail.com', 'https://github.com/xlramdhon1']
+
+---
+
 ## Lisensi
 
-Didistribusikan di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.
+Proyek ini dilisensikan di bawah Lisensi MIT. Lihat file `LICENSE` untuk informasi lebih lanjut.
+
+Hak Cipta (c) 2024 [Nama Anda atau Organisasi Anda]
