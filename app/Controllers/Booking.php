@@ -299,5 +299,33 @@ class Booking extends BaseController
         'message' => $updated ? 'Status updated' : 'Failed to update'
     ]);
 }
+public function buktiPembayaran($id)
+{
+    $bookingModel = new BookingModel();
+
+    $booking = $bookingModel
+        ->select('booking.*, 
+          pelanggan.nama_pelanggan as pelanggan_nama, 
+          pelanggan.email as pelanggan_email, 
+          lapangan.nama_lapangan as lapangan_nama')
+        ->join('pelanggan', 'pelanggan.id = booking.pelanggan_id')
+        ->join('lapangan', 'lapangan.id = booking.lapangan_id')
+        ->where('booking.id', $id)
+        ->first();
+
+    if (!$booking) {
+        return redirect()->back()->with('error', 'Booking tidak ditemukan.');
+    }
+
+    if (!in_array($booking['status'], ['confirmed', 'completed'])) {
+        return redirect()->back()->with('error', 'Bukti pembayaran hanya tersedia untuk booking yang sudah dibayar.');
+    }
+
+    $dompdf = new \Dompdf\Dompdf();
+    $dompdf->loadHtml(view('dashboard/booking/bukti_pdf', ['booking' => $booking]));
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+    $dompdf->stream("Bukti_Pembayaran_Booking_{$booking['id']}.pdf", ['Attachment' => false]);
+}
 
 }

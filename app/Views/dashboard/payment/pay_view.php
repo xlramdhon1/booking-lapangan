@@ -17,11 +17,11 @@
   </button>
 
   <!-- Tombol Snap test manual (opsional) -->
-  <button onclick="snap.pay('4d3ff4a3-db8f-4b31-a89f-0b5d0429cb37')" 
+  <!-- <button onclick="snap.pay('4d3ff4a3-db8f-4b31-a89f-0b5d0429cb37')" 
           class="mt-2 ml-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
     Coba Snap Manual
   </button>
-</div>
+</div> -->
 
 <!-- Load Midtrans Snap.js -->
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="Mid-client-0ef5cP54fhUsJaMr"></script>

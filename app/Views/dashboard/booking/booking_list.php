@@ -136,6 +136,14 @@
           </td>
           <td class="px-4 py-3">Rp <?= number_format($booking['total_bayar'], 0, ',', '.') ?></td>
           <td class="px-4 py-3 space-x-2">
+            <?php if (in_array($booking['status'], ['confirmed', 'completed'])): ?>
+  <a href="<?= base_url('/booking/bukti/' . $booking['id']) ?>" 
+     class="text-purple-600 hover:underline" 
+     target="_blank">
+    Cetak Bukti
+  </a> |
+<?php endif; ?>
+
             <?php if ($booking['status'] === 'pending'): ?>
               <a href="<?= base_url('/payment/bayar/' . $booking['id']) ?>" class="text-green-600 hover:underline">Bayar</a> |
             <?php endif; ?>
