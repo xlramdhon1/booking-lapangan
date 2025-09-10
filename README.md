@@ -106,4 +106,4 @@ Pastikan perangkat Anda sudah terinstall:
 
 Proyek ini dilisensikan di bawah Lisensi MIT. Lihat file `LICENSE` untuk informasi lebih lanjut.
 
-Hak Cipta (c) 2024 [Nama Anda atau Organisasi Anda]
+Hak Cipta (c) 2024 [Ramadhoni Gibran]
